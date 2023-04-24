@@ -33,7 +33,7 @@ const Note = () => {
     setIsValid(false);
   }, [isValid,dbRef,dispatch]);
 
-  function createNote(note: string) {
+  const createNote=(note: string) =>{
     push(child(dbRef, `note/`), {
       note: note,
     });
@@ -41,7 +41,7 @@ const Note = () => {
     
   }
 
-  function updateNote(index: any, note: string) {
+  const updateNote=(index: any, note: string)=> {
     const key = Object.keys(data)[index];
     const noteRef = child(dbRef, `note/${key}`);
     update(noteRef, {
@@ -50,7 +50,7 @@ const Note = () => {
     setIsValid(true);
   }
 
-  function deleteNote(index: any) {
+  const deleteNote=(index: any)=> {
     const key = Object.keys(data)[index];
     remove(child(dbRef, `note/${key}`));
     setIsValid(true);
@@ -78,15 +78,13 @@ const Note = () => {
                   </span>
                   <span>
                     <Button
-                      style={{ margin: 5 }}
-                      type="primary"
+                      style={{ margin: 5,backgroundColor:"red" }}
                       onClick={() => deleteNote(index)}
                     >
                       Delete
                     </Button>
                     <Button
-                      style={{ margin: 5 }}
-                      type="primary"
+                      style={{ margin: 5,backgroundColor:"green" }}
                       onClick={() => updateNote(index, note.current)}
                     >
                       Update
